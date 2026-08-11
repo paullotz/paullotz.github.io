@@ -1,0 +1,31 @@
+- Reading:
+	- [[510 Operating Systems: Three Easy Principle]]
+	- [[520 Hacking: The Art of exploitation]]
+- Books list:
+	- CompSci:
+		- Head First SQL
+		- Operating Systems: Three Easy Pieces
+		- TCP/ICP Illustrated
+		- Inside the machine
+		- Design Patterns: Elements of Reusable Object-Oriented Software
+		- Algorithms Unlocked
+		- Pragmatic Programmer
+		- Hacking: The Art of Eploitation
+		- Stuxnet Book
+	- Management:
+		- Become an Effective Software Engineering Manager
+		- The Engineering Executive's Primer
+        - The Lean Startup
+        - Financial Needs for Founders
+	- Self-management:
+		- Deep Work ✅
+		- Ultralearning ✅
+		- 7 Habits of highly effective people ✅
+		- The Big Five For Life
+		- Wie man Freunde gewinnt
+	- Classic literature:
+		- Der Spieler ✅
+		- Die Verwandlung
+		- Der Prozess
+		- The Great Gatsby
+		- Crime and punishment
