@@ -1,4 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#000000"/>
-  <text x="50%" y="50%" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="280" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">P.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Outer glow -->
+  <circle cx="32" cy="32" r="28" fill="#93c5fd" fill-opacity="0.12" />
+  
+  <!-- Comic Crescent Moon Body -->
+  <path
+    d="M40 8C26 12 16 24 16 38C16 52 27 60 41 58C29 55 24 43 24 33C24 20 33 12 40 8Z"
+    fill="#fde047"
+    stroke="#0f172a"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Moon highlight shine -->
+  <path
+    d="M22 28C22 20 27 15 31 12"
+    stroke="#ffffff"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Comic Craters -->
+  <circle cx="23" cy="40" r="3" fill="#facc15" stroke="#0f172a" stroke-width="1.8" />
+  <circle cx="30" cy="48" r="2" fill="#facc15" stroke="#0f172a" stroke-width="1.5" />
+  <circle cx="26" cy="24" r="1.8" fill="#facc15" stroke="#0f172a" stroke-width="1.5" />
+
+  <!-- Comic sleep/happy eye & cheek blush -->
+  <path
+    d="M26 33C27.5 35 29.5 35 31 33"
+    stroke="#0f172a"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <circle cx="24" cy="35" r="1.5" fill="#f87171" />
+
+  <!-- Tiny twinkle stars -->
+  <path
+    d="M48 18L49 21L52 22L49 23L48 26L47 23L44 22L47 21L48 18Z"
+    fill="#93c5fd"
+    stroke="#0f172a"
+    stroke-width="1"
+  />
+  <path
+    d="M44 42L45 44L47 45L45 46L44 48L43 46L41 45L43 44L44 42Z"
+    fill="#ffffff"
+    stroke="#0f172a"
+    stroke-width="0.8"
+  />
 </svg>
