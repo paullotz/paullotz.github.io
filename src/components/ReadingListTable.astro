@@ -1,0 +1,75 @@
+---
+import type { QueuedBook } from '../lib/books';
+
+interface Props {
+  books: QueuedBook[];
+}
+
+const { books } = Astro.props;
+---
+<div class="space-y-3" data-filter-root>
+  <div class="relative">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    <input
+      type="text"
+      data-filter-input
+      placeholder="Search reading list backlog..."
+      class="w-full pl-10 pr-3 py-2 text-xs sm:text-sm rounded-lg border border-zinc-800 bg-zinc-900/60 text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-700 shadow-sm"
+    />
+  </div>
+
+  <div class="overflow-x-auto border border-zinc-800/80 rounded-lg">
+    <table class="w-full text-left text-xs sm:text-sm">
+      <thead class="bg-zinc-900/60 border-b border-zinc-800 text-[11px] uppercase tracking-wider text-zinc-400 font-semibold">
+        <tr>
+          <th class="py-2.5 px-4">Book / Title</th>
+          <th class="py-2.5 px-4">Author</th>
+          <th class="py-2.5 px-4 hidden sm:table-cell">Category</th>
+          <th class="py-2.5 px-4 hidden md:table-cell">Year</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-zinc-800/50">
+        {
+          books.map((book) => (
+            <tr
+              data-filter-row
+              data-search={`${book.data.title} ${book.data.author} ${book.data.category}`.toLowerCase()}
+              class="hover:bg-zinc-900/30 transition-colors"
+            >
+              <td class="py-3 px-4 font-medium text-zinc-200">{book.data.title}</td>
+              <td class="py-3 px-4 text-zinc-400 text-xs">{book.data.author}</td>
+              <td class="py-3 px-4 text-zinc-500 text-xs hidden sm:table-cell">{book.data.category}</td>
+              <td class="py-3 px-4 text-zinc-500 text-xs hidden md:table-cell">{book.data.year || '—'}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div data-filter-empty class="hidden py-8 text-center text-xs text-zinc-500 border border-dashed border-zinc-800/60 rounded-lg">
+    No books found
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-filter-root]').forEach((root) => {
+    const input = root.querySelector('[data-filter-input]') as HTMLInputElement | null;
+    // Skip roots already wired by another table instance script
+    if (!input || input.dataset.wired) return;
+    input.dataset.wired = 'true';
+    const rows = Array.from(root.querySelectorAll('[data-filter-row]'));
+    const empty = root.querySelector('[data-filter-empty]');
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let visible = 0;
+      rows.forEach((row) => {
+        const hay = (row as HTMLElement).dataset.search || '';
+        const show = !q || hay.includes(q);
+        (row as HTMLElement).style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      empty?.classList.toggle('hidden', visible !== 0);
+    });
+  });
+</script>

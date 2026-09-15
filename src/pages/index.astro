@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CurrentlyReadingBanner from '../components/CurrentlyReadingBanner.astro';
+import BooksReadTable from '../components/BooksReadTable.astro';
+import ReadingListTable from '../components/ReadingListTable.astro';
+import { loadBooksRead, loadReadingList, loadAllArticles } from '../lib/books';
+
+const [booksRead, readingList, articles] = await Promise.all([
+  loadBooksRead(),
+  loadReadingList(),
+  loadAllArticles(),
+]);
+
+const currentlyReading = readingList.filter((b) => b.data.status === 'reading');
+const backlogQueue = readingList.filter((b) => b.data.status !== 'reading');
+const totalBooksCount = booksRead.length + readingList.length;
+---
+<Layout
+  activeTab="books"
+  booksCount={totalBooksCount}
+  articlesCount={articles.length}
+>
+  <div class="space-y-10">
+    {currentlyReading.length > 0 && <CurrentlyReadingBanner books={currentlyReading} />}
+
+    <section class="space-y-4">
+      <header class="space-y-1 border-b border-zinc-800 pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-white">Books I&apos;ve Read</h2>
+          <p class="text-xs text-zinc-400">Completed books with ratings and structured notes.</p>
+        </div>
+        <span class="text-xs text-zinc-500">{booksRead.length} books</span>
+      </header>
+
+      <BooksReadTable books={booksRead} />
+    </section>
+
+    <section class="space-y-4 pt-4">
+      <header class="space-y-1 border-b border-zinc-800 pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-white">Reading List</h2>
+          <p class="text-xs text-zinc-400">
+            Backlog queue of books across computer science, systems, and literature.
+          </p>
+        </div>
+        <span class="text-xs text-zinc-500">{backlogQueue.length} queued</span>
+      </header>
+
+      <ReadingListTable books={backlogQueue} />
+    </section>
+  </div>
+</Layout>

@@ -1,5 +1,5 @@
 ---
-slug: 1984
+slug: "1984"
 title: "1984"
 author: George Orwell
 status: completed
